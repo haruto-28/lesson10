@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # LINEのチャネルアクセストークン
-LINE_CHANNEL_ACCESS_TOKEN = 'YOUR_CHANNEL_ACCESS_TOKEN'
+LINE_CHANNEL_ACCESS_TOKEN = 'gg1QDQOYgK74md2lPMCIZI+OKx3/00r6Rs7NecUO5vmM+McOyrt1TEeseRAsySlRNWbIeGT1M8oj49Mo7DbQOcmSwE1xcnWtj5wP/h6buAf7ZqSZ3szhOirUEBXMwr7grdm4xq+kKKBM6UCr/uVTHAdB04t89/1O/w1cDnyilFU='
 
 def send_line_message(message):
     url = 'https://api.line.me/v2/bot/message/push'
