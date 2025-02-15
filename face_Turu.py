@@ -3,7 +3,7 @@ from PIL import Image
 import face_recognition
 
 # 基準の写真を読み込む
-known_image = face_recognition.load_image_file("known_face.jpg")
+known_image = face_recognition.load_image_file("image_one.jpg")
 known_face_encoding = face_recognition.face_encodings(known_image)[0]
 
 # カメラで写真を撮る
