@@ -11,7 +11,7 @@ def send_line_message(message):
         'Authorization': f'Bearer {LINE_CHANNEL_ACCESS_TOKEN}'
     }
     payload = {
-        'to': 'YOUR_USER_ID',  # メッセージを送る相手のユーザーID
+        'to': 'mine88xyzword',  # メッセージを送る相手のユーザーID
         'messages': [{'type': 'text', 'text': message}]
     }
     response = requests.post(url, headers=headers, json=payload)
