@@ -1,29 +1,29 @@
-# app.py
 import streamlit as st
+import random
+import string
 
-# ページのタイトル
-st.title("メッセージ送信アプリ")
+# ランダムなパスワードを生成する関数
+def generate_random_password(length=8):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choice(characters) for i in range(length))
 
-# メッセージを入力するページ
-if st.sidebar.button("メッセージを送る"):
-    # メッセージの入力
-    message = st.text_input("送信するメッセージを入力してね")
+# セッション状態にパスワードを保存
+if 'password' not in st.session_state:
+    st.session_state.password = generate_random_password()
 
-    # メッセージをセッション状態に保存
-    if message:
-        st.session_state.message = message
-        st.success("メッセージを送信しました！🎉")
+# パスワード入力
+st.title("パスワード保護アプリ")
+input_password = st.text_input("パスワードを入力してください", type="password")
+
+# パスワードが正しいか確認
+if st.button("ログイン"):
+    if input_password == st.session_state.password:
+        st.success("ログイン成功！🎉")
+        st.write("ここにアプリの内容を表示します。")
     else:
-        st.warning("メッセージを入力してください！")
+        st.error("パスワードが間違っています。再試行してください。")
 
-# 別のページに移動するボタン
-if st.sidebar.button("メッセージを表示する"):
-    st.session_state.show_message = True
-
-# メッセージを表示するページ
-if st.session_state.get("show_message"):
-    st.title("受信したメッセージ")
-    if "message" in st.session_state:
-        st.write(f"受信したメッセージ: {st.session_state.message}")
-    else:
-        st.write("メッセージはありません。")
+# 新しいパスワードを生成するボタン
+if st.button("新しいパスワードを生成"):
+    st.session_state.password = generate_random_password()
+    st.success(f"新しいパスワードが生成されました: {st.session_state.password}")
