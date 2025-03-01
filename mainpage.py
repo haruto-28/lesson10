@@ -2,7 +2,7 @@ import streamlit as st
 
 # タイトルと説明
 st.title("宿題管理ページ")
-st.write("現在の宿題")
+st.write("現在の宿題の状況")
 
 # ユーザー入力
 height = st.number_input("身長 (cm)", min_value=50.0, max_value=250.0, value=170.0, step=0.1)
