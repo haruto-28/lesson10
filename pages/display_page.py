@@ -24,3 +24,6 @@ if state["another_button_clicked"]:
 else:
     st.write("宿題はまだ終了していません。")
 
+if st.button("ページをリロード"):
+    st.experimental_rerun()  # ボタンを押したらページをリロード
+
