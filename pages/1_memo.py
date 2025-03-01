@@ -32,12 +32,21 @@ if st.button("保存"):
         notes.append(new_note)
         save_notes(notes)
         st.success("メモが保存されました。")
-        st.experimental_rerun()  # メモ保存後にページをリロード
+        # ページをリロードするためにクエリパラメータを設定
+        st.experimental_set_query_params(reload="true")
 
 # 現在のメモの表示
 st.subheader("保存されたメモ")
 if notes:
-    for i, note in enumerate(notes, 1):
-        st.write(f"メモ {i}: {note}")
+    for i, note in enumerate(notes):
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.write(f"メモ {i + 1}: {note}")
+        with col2:
+            # 削除ボタン
+            if st.button("削除", key=f"delete_{i}"):
+                notes.pop(i)
+                save_notes(notes)
+                st.experimental_set_query_params(reload="true")
 else:
     st.write("保存されたメモはありません。")
