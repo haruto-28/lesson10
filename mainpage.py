@@ -30,11 +30,11 @@ if not state.get("authenticated", False):
     if password == PASSWORD:
         state["authenticated"] = True
         save_state(state)
+        st.experimental_rerun()  # 認証後にページをリロード
     else:
         st.write("パスワードが間違っています。")
-
-# 認証されている場合にボタンを表示
-if state.get("authenticated", False):
+else:
+    # 認証されている場合にボタンを表示
     if st.button("Click Me"):
         state["button_clicked"] = True
         state["another_button_clicked"] = False
