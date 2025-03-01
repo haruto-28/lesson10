@@ -24,17 +24,4 @@ if state["another_button_clicked"]:
 else:
     st.write("宿題はまだ終了していません。")
 
-
-
-
-# 状態を初期化
-if 'reload' not in st.session_state:
-    st.session_state.reload = False
-
-if st.button("ページをリロード"):
-    st.session_state.reload = True  # 状態を更新
-
-# 状態に基づいて表示を更新
-if st.session_state.reload:
-    st.write("ページがリロードされました！")
-    # ここにリロード後の処理を書くことができます
+st.write("このページを再読み込みしてください")
