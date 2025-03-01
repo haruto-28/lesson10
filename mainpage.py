@@ -36,13 +36,13 @@ if not state.get("authenticated", False):
         st.write("パスワードが間違っています。")
 else:
     # 認証されている場合にボタンを表示
-    if st.button("Click Me"):
+    if st.button("宿題スタート"):
         state["button_clicked"] = True
         state["another_button_clicked"] = False
         state["start_time"] = time.time()
         save_state(state)
 
-    if st.button("Click Another Button"):
+    if st.button("宿題終了"):
         state["another_button_clicked"] = True
         state["button_clicked"] = False
         state["elapsed_time"] = time.time() - state["start_time"]
