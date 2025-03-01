@@ -6,6 +6,10 @@ import os
 STATE_FILE = "state.json"
 PASSWORD = "your_password"  # ここでパスワードを設定
 
+#リセット
+state["authenticated"] = True
+state["button_clicked"] = False
+
 # セッション状態を読み込む関数
 def load_state():
     if os.path.exists(STATE_FILE):
