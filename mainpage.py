@@ -11,7 +11,7 @@ def load_state():
     if os.path.exists(STATE_FILE):
         with open(STATE_FILE, "r") as f:
             return json.load(f)
-    return {"button_clicked": False, "authenticated": False}
+    return {"button_clicked": False, "another_button_clicked": False, "authenticated": False}
 
 # セッション状態を保存する関数
 def save_state(state):
@@ -19,7 +19,10 @@ def save_state(state):
         json.dump(state, f)
 
 # セッション状態を読み込む
-state = load_state()
+if "state" not in st.session_state:
+    st.session_state.state = load_state()
+
+state = st.session_state.state
 
 # パスワード入力
 if not state.get("authenticated", False):
@@ -34,10 +37,18 @@ if not state.get("authenticated", False):
 if state.get("authenticated", False):
     if st.button("Click Me"):
         state["button_clicked"] = True
+        state["another_button_clicked"] = False
+        save_state(state)
+
+    if st.button("Click Another Button"):
+        state["another_button_clicked"] = True
+        state["button_clicked"] = False
         save_state(state)
 
     # セッション状態に基づいて表示を更新
     if state["button_clicked"]:
         st.write("ボタンは押されました!")
+    elif state["another_button_clicked"]:
+        st.write("別のボタンが押されました!")
     else:
         st.write("ボタンはまだ押されていません。")
