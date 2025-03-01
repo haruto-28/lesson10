@@ -52,8 +52,11 @@ else:
     if state["button_clicked"] and not state["another_button_clicked"]:
         st.write("宿題を始めました")
         st.write(f"経過時間: {time.time() - state['start_time']:.2f}秒")
+        timer=True
     elif state["another_button_clicked"]:
         st.write(f"宿題を終了しました。経過時間: {state['elapsed_time']:.2f}秒")
+        time_write=state['elapsed_time']
+        timer=False
     else:
         st.write("ボタンはまだ押されていません。")
 
