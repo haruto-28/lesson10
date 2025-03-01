@@ -41,19 +41,21 @@ else:
         state["another_button_clicked"] = False
         state["start_time"] = time.time()
         save_state(state)
-        st.experimental_rerun()
 
     if st.button("Click Another Button"):
         state["another_button_clicked"] = True
         state["button_clicked"] = False
         state["elapsed_time"] = time.time() - state["start_time"]
         save_state(state)
-        st.experimental_rerun()
 
     # セッション状態に基づいて表示を更新
-    if state["button_clicked"]:
+    if state["button_clicked"] and not state["another_button_clicked"]:
         st.write("宿題を始めました")
+        st.write(f"経過時間: {time.time() - state['start_time']:.2f}秒")
     elif state["another_button_clicked"]:
         st.write(f"宿題を終了しました。経過時間: {state['elapsed_time']:.2f}秒")
     else:
         st.write("ボタンはまだ押されていません。")
+
+    # セッション状態を保存
+    save_state(state)
