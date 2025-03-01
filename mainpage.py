@@ -26,9 +26,6 @@ if "state" not in st.session_state:
 
 state = st.session_state.state
 
-#リセット
-state["authenticated"] = True
-state["button_clicked"] = False
 
 # パスワード入力
 if not state.get("authenticated", False):
@@ -53,8 +50,8 @@ else:
 
     # セッション状態に基づいて表示を更新
     if state["button_clicked"]:
-        st.write("ボタンは押されました!")
+        st.write("宿題を始めました")
     elif state["another_button_clicked"]:
-        st.write("別のボタンが押されました!")
+        st.write("宿題を終了しました。")
     else:
         st.write("ボタンはまだ押されていません。")
