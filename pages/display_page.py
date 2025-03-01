@@ -24,5 +24,3 @@ if state["another_button_clicked"]:
 else:
     st.write("宿題はまだ終了していません。")
 
-# 入力ページに戻るリンクを表示
-st.write("入力ページに戻る -> [入力ページへ](mainpage.py)")

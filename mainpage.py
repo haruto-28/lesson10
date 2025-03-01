@@ -42,14 +42,14 @@ else:
         state["another_button_clicked"] = False
         state["start_time"] = time.time()
         save_state(state)
-        st.experimental_rerun()  # ボタンが押された後にページをリロード
+
 
     if st.button("宿題終了"):
         state["another_button_clicked"] = True
         state["button_clicked"] = False
         state["elapsed_time"] = time.time() - state["start_time"]
         save_state(state)
-        st.experimental_rerun()  # ボタンが押された後にページをリロード
+
 
     # セッション状態に基づいて表示を更新
     if state["button_clicked"] and not state["another_button_clicked"]:
