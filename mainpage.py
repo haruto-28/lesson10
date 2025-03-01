@@ -28,12 +28,13 @@ state = st.session_state.state
 # パスワード入力
 if not state.get("authenticated", False):
     password = st.text_input("パスワードを入力してください:", type="password")
-    if password == PASSWORD:
-        state["authenticated"] = True
-        save_state(state)
-        st.experimental_rerun()  # 認証後にページをリロード
-    else:
-        st.write("パスワードが間違っています。")
+    if st.button("認証"):
+        if password == PASSWORD:
+            state["authenticated"] = True
+            save_state(state)
+            st.experimental_rerun()  # 認証後にページをリロード
+        else:
+            st.write("パスワードが間違っています。")
 else:
     # 認証されている場合にボタンを表示
     if st.button("宿題スタート"):
@@ -41,22 +42,21 @@ else:
         state["another_button_clicked"] = False
         state["start_time"] = time.time()
         save_state(state)
+        st.experimental_rerun()  # ボタンが押された後にページをリロード
 
     if st.button("宿題終了"):
         state["another_button_clicked"] = True
         state["button_clicked"] = False
         state["elapsed_time"] = time.time() - state["start_time"]
         save_state(state)
+        st.experimental_rerun()  # ボタンが押された後にページをリロード
 
     # セッション状態に基づいて表示を更新
     if state["button_clicked"] and not state["another_button_clicked"]:
         st.write("宿題を始めました")
         st.write(f"経過時間: {time.time() - state['start_time']:.2f}秒")
-        timer=True
     elif state["another_button_clicked"]:
         st.write(f"宿題を終了しました。経過時間: {state['elapsed_time']:.2f}秒")
-        time_write=state['elapsed_time']
-        timer=False
     else:
         st.write("ボタンはまだ押されていません。")
 
