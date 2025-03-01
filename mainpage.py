@@ -27,6 +27,6 @@ if st.button("Click Me"):
 
 # セッション状態に基づいて表示を更新
 if state["button_clicked"]:
-    st.write("Button was clicked!")
+    st.write("ボタンは押されました!")
 else:
-    st.write("Button has not been clicked yet.")
+    st.write("ボタンはまだ押されていません。")
