@@ -19,10 +19,10 @@ if "state" not in st.session_state:
 state = st.session_state.state
 
 # クエリパラメータを取得
-query_params = st.experimental_get_query_params()
+query_params = st.query_params  # 更新された方法でクエリパラメータを取得
 
 # ページ遷移に基づいて表示を変更
-if query_params.get("page", [None])[0] == "homework_started":
+if query_params.get("page") == "homework_started":
     st.write("宿題がスタートしました")
 else:
     # 結果表示
