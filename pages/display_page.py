@@ -21,8 +21,8 @@ state = st.session_state.state
 # クエリパラメータを取得
 query_params = st.query_params  # 更新された方法でクエリパラメータを取得
 
-# ページ遷移に基づいて表示を変更
-if query_params.get("page") == "homework_started":
+# 「宿題スタート」の状態を表示
+if "homework_started" in st.session_state and st.session_state.homework_started:
     st.write("宿題がスタートしました")
 else:
     # 結果表示
