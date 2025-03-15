@@ -42,8 +42,9 @@ else:
         state["another_button_clicked"] = False
         state["start_time"] = time.time()
         save_state(state)
-        # クエリパラメータを設定せずに状態を更新
-        st.write("宿題がスタートしました")
+        # 状態が変わったことをsession_stateで保存
+        st.session_state.homework_started = True
+        st.experimental_rerun()  # 状態をリセットして再読み込み
 
     if st.button("宿題終了"):
         state["another_button_clicked"] = True
