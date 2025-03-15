@@ -28,7 +28,7 @@ else:
     # 結果表示
     if state["another_button_clicked"]:
         st.write(f"宿題を終了しました。経過時間: {state['elapsed_time']:.2f}秒")
+        st.write("このページを再読み込みしてください")
     else:
         st.write("宿題はまだ終了していません。")
 
-st.write("このページを再読み込みしてください")
