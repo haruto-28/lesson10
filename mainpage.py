@@ -32,7 +32,7 @@ if not state.get("authenticated", False):
         if password == PASSWORD:
             state["authenticated"] = True
             save_state(state)
-            st.experimental_rerun()  # 認証後にページをリロード
+            st.session_state.authenticated = True  # 認証状態を更新
         else:
             st.write("パスワードが間違っています。")
 else:
@@ -43,8 +43,7 @@ else:
         state["start_time"] = time.time()
         save_state(state)
         # 状態が変わったことをsession_stateで保存
-        st.session_state.homework_started = True
-        st.experimental_rerun()  # 状態をリセットして再読み込み
+        st.session_state.homework_started = True  # 宿題スタート状態を保存
 
     if st.button("宿題終了"):
         state["another_button_clicked"] = True
@@ -63,3 +62,9 @@ else:
 
     # セッション状態を保存
     save_state(state)
+
+# 認証状態や宿題スタート状態を表示
+if "homework_started" in st.session_state and st.session_state.homework_started:
+    st.write("宿題がスタートしました")
+else:
+    st.write("宿題はまだ始まっていません。")
