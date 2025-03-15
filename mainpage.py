@@ -42,8 +42,8 @@ else:
         state["another_button_clicked"] = False
         state["start_time"] = time.time()
         save_state(state)
-        # クエリパラメータを更新して別ページに遷移
-        st.experimental_set_query_params(page="homework_started")  # ページ遷移
+        # クエリパラメータを設定せずに状態を更新
+        st.write("宿題がスタートしました")
 
     if st.button("宿題終了"):
         state["another_button_clicked"] = True
