@@ -32,8 +32,8 @@ if st.button("保存"):
         notes.append(new_note)
         save_notes(notes)
         st.success("メモが保存されました。")
-        # ページをリロードするためにクエリパラメータを設定
-        st.experimental_set_query_params(reload="true")
+        # メモ保存後にページをリロードするために rerun を使う
+        st.experimental_rerun()  # ページのリロード
 
 # 現在のメモの表示
 st.subheader("保存されたメモ")
@@ -47,6 +47,6 @@ if notes:
             if st.button("削除", key=f"delete_{i}"):
                 notes.pop(i)
                 save_notes(notes)
-                st.experimental_set_query_params(reload="true")
+                st.experimental_rerun()  # メモ削除後にページをリロード
 else:
     st.write("保存されたメモはありません。")
