@@ -18,10 +18,17 @@ if "state" not in st.session_state:
 
 state = st.session_state.state
 
-# 結果を表示
-if state["another_button_clicked"]:
-    st.write(f"宿題を終了しました。経過時間: {state['elapsed_time']:.2f}秒")
+# クエリパラメータを取得
+query_params = st.experimental_get_query_params()
+
+# ページ遷移に基づいて表示を変更
+if query_params.get("page", [None])[0] == "homework_started":
+    st.write("宿題がスタートしました")
 else:
-    st.write("宿題はまだ終了していません。")
+    # 結果表示
+    if state["another_button_clicked"]:
+        st.write(f"宿題を終了しました。経過時間: {state['elapsed_time']:.2f}秒")
+    else:
+        st.write("宿題はまだ終了していません。")
 
 st.write("このページを再読み込みしてください")
