@@ -24,6 +24,7 @@ query_params = st.query_params  # 更新された方法でクエリパラメー�
 # 「宿題スタート」の状態を表示
 if "homework_started" in st.session_state and st.session_state.homework_started:
     st.write("宿題がスタートしました")
+    st.write("このページを再読み込みしてください")
 else:
     # 結果表示
     if state["another_button_clicked"]:
@@ -31,4 +32,5 @@ else:
         st.write("このページを再読み込みしてください")
     else:
         st.write("宿題はまだ終了していません。")
+        st.write("このページを再読み込みしてください")
 
